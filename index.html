@@ -7,7 +7,8 @@
         .container { display: flex; justify-content: space-between; flex-wrap: wrap; margin-top: 15vh; }
         .ball { border-radius: 50%; width: 70px; height: 70px; background-color:beige; position: fixed; left: calc(50% - 35px); top: 5vh; }
         
-        .key { width: 52vw; height: 7vh; margin-top: 2em; background-color: azure; }
+        /* .key { width: 52vw; height: 7vh; margin-top: 2em; background-color: azure; } */
+         .key { width: 52vw; height: 80px; margin-top: 20px; background-color: azure; } 
         .right { margin-left: auto; }
     </style>
     <script>
@@ -16,6 +17,7 @@
         
         /*if vertical scroll reaches 80% of body height, then append two divs*/       
         function addKey() {
+            findKey();
             var scroll = document.body.scrollTop;
             var docHeight = document.documentElement.scrollHeight/2.0 * .8;
             if(scroll >= docHeight) {
@@ -29,6 +31,21 @@
         }
 
         /* TODO: keys change color & play sounds when interacting with ball */
+        function findKey() {
+            console.log("in findkey");
+            //key height + margin 
+            //TODO make this dyanmic based on VH
+            var keySpace = 80 + 20;
+            var scroll = document.body.scrollTop;
+            var curKey = scroll/keySpace;
+            curKey = Math.round(curKey) - 1; 
+            console.log(curKey);
+            var key = document.querySelector(".container").getElementsByTagName("div")[curKey];
+            key.style.backgroundColor = 'blue';
+            var oldKey = document.querySelector(".container").getElementsByTagName("div")[curKey-1];
+            oldKey.style.backgroundColor = 'azure';
+        }
+        
         
         
     </script>
