@@ -5,11 +5,33 @@
     <style>
         
         .container { display: flex; justify-content: space-between; flex-wrap: wrap; margin-top: 15vh; }
-        .ball { border-radius: 50%; width: 4vw; height: 7vh; background-color:beige; position: fixed; left: calc(50% - 2%); top: 5vh; }
+        .ball { border-radius: 50%; width: 70px; height: 70px; background-color:beige; position: fixed; left: calc(50% - 35px); top: 5vh; }
         
         .key { width: 52vw; height: 7vh; margin-top: 2em; background-color: azure; }
         .right { margin-left: auto; }
     </style>
+    <script>
+        /* auto generation of new keys */
+        document.addEventListener("scroll", addKey);
+        
+        /*if vertical scroll reaches 80% of body height, then append two divs*/       
+        function addKey() {
+            var scroll = document.body.scrollTop;
+            var docHeight = document.documentElement.scrollHeight/2.0 * .8;
+            if(scroll >= docHeight) {
+                var leftkey = document.createElement("div");
+                leftkey.className = "key";
+                document.querySelector(".container").appendChild(leftkey);
+                var rightkey = document.createElement("div");
+                rightkey.className = "key right";
+                document.querySelector(".container").appendChild(rightkey);
+            }
+        }
+
+        /* TODO: keys change color & play sounds when interacting with ball */
+        
+        
+    </script>
 </head>
 <body>
 
